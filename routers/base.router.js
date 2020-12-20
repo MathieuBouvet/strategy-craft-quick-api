@@ -1,8 +1,16 @@
-const router = require("express").Router();
+const express = require("express");
 const baseController = require("../controllers/base.controller");
+const validateBase = require("../middlewares/validateBase");
 const productionRouter = require("../routers/production.router");
 
-router.get("/:id", baseController.getBase);
-router.use("/:baseId/productions", productionRouter);
+const router = express.Router({ mergeParams: true });
+const idedBaseRouter = express.Router({ mergeParams: true });
+
+idedBaseRouter
+  .use(validateBase)
+  .get("/", baseController.getBase)
+  .use("/productions", productionRouter);
+
+router.use("/:baseId", idedBaseRouter);
 
 module.exports = router;
