@@ -9,6 +9,14 @@ app.use("/hello/:name?", (req, res) => {
   res.status(200).json({
     msg: `Hello ${name} ;)`,
   });
+
+app.use((err, req, res, next) => {
+  if (err instanceof HttpError) {
+    res.status(err.code);
+    res.send(err);
+  }
+  res.status(500);
+  res.send("Internal Server Error");
 });
 
 module.exports = app;
