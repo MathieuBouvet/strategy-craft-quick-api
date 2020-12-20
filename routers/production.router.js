@@ -1,6 +1,17 @@
-const router = require("express").Router({ mergeParams: true });
+const express = require("express");
 const productionController = require("../controllers/production.controller");
+const validateBaseForProduction = require("../middlewares/validateBase");
+const validateProduction = require("../middlewares/validateProduction");
 
-router.get("/:ressourceName", productionController.getProduction);
+const router = express.Router({ mergeParams: true });
+const namedRessourceRouter = express.Router({ mergeParams: true });
+
+namedRessourceRouter
+  .use(validateProduction)
+  .get("/", productionController.getProduction);
+
+router
+  .use(validateBaseForProduction)
+  .use("/:ressourceName", namedRessourceRouter);
 
 module.exports = router;
