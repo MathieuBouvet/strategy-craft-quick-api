@@ -1,6 +1,5 @@
 const express = require("express");
 const productionController = require("../controllers/production.controller");
-const validateBaseForProduction = require("../middlewares/validateBase");
 const validateProduction = require("../middlewares/validateProduction");
 
 const router = express.Router({ mergeParams: true });
@@ -10,8 +9,6 @@ namedRessourceRouter
   .use(validateProduction)
   .get("/", productionController.getProduction);
 
-router
-  .use(validateBaseForProduction)
-  .use("/:ressourceName", namedRessourceRouter);
+router.use("/:ressourceName", namedRessourceRouter);
 
 module.exports = router;
