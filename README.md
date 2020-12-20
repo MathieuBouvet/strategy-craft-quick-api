@@ -4,6 +4,8 @@ A quick implementation for strategy craft. WIP
 ## Setup guide
 After cloning, don't forget to run **npm install**.
 
+Create an empty folder named **data** at the project root.
+
 Run **npm run dev** to simply start the server.
 
 Run **npm start** to start it with nodemon. (It is convenient when you are working on the project)
