@@ -4,7 +4,7 @@
   "description": "Quick implementation for strategy craft",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon --ignore data/ server.js",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
