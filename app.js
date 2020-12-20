@@ -1,6 +1,7 @@
 const express = require("express");
 const HttpError = require("./utils/HttpErrors");
 const playerRouter = require("./routers/player.router");
+const baseRouter = require("./routers/base.router");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use("/hello/:name?", (req, res) => {
 });
 
 app.use("/players", playerRouter);
+app.use("/bases", baseRouter);
 
 app.use((err, req, res, next) => {
   if (err instanceof HttpError) {
