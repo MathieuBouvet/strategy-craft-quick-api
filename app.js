@@ -13,10 +13,11 @@ app.use("/hello/:name?", (req, res) => {
 app.use((err, req, res, next) => {
   if (err instanceof HttpError) {
     res.status(err.code);
-    res.send(err);
+    res.json({ ...err, message: err.message });
+  } else {
+    res.status(500);
+    res.send("Internal Server Error : " + err);
   }
-  res.status(500);
-  res.send("Internal Server Error");
 });
 
 module.exports = app;
