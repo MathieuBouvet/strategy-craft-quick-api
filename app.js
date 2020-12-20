@@ -1,4 +1,6 @@
 const express = require("express");
+const HttpError = require("./utils/HttpErrors");
+const playerRouter = require("./routers/player.router");
 
 const app = express();
 
@@ -9,6 +11,9 @@ app.use("/hello/:name?", (req, res) => {
   res.status(200).json({
     msg: `Hello ${name} ;)`,
   });
+});
+
+app.use("/players", playerRouter);
 
 app.use((err, req, res, next) => {
   if (err instanceof HttpError) {
