@@ -1,7 +1,6 @@
 function getProduction(req, res) {
   const production = req.production.data.value();
-  const productionData = { name: req.production.name, ...production };
-  res.json(productionData);
+  res.json({ name: req.production.name, ...production });
 }
 
 module.exports = { getProduction };
