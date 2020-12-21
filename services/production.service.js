@@ -24,8 +24,12 @@ function getNextLevelCost(production) {
   const ressourceName = production.name;
   const currentLevel = production.data.value().level;
   const upgradeBaseCost = productionSettings[ressourceName].upgradeCosts;
-  const costFn = cost => currentLevel * cost;
-  return objectMap(upgradeBaseCost, costFn);
+  const workerCost = productionSettings[ressourceName].upgradeWorkerCost;
+  const ressourceCostFn = cost => currentLevel * cost;
+  return {
+    ...objectMap(upgradeBaseCost, ressourceCostFn),
+    workers: workerCost,
+  };
 }
 
 module.exports = {
