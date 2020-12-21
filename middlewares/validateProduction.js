@@ -8,9 +8,12 @@ function validateProduction(req, res, next) {
   const ressourceName = productionService.validateRessourceName(
     req.params.ressourceName
   );
-  req.production = requireExistingProduction(
-    productionService.getProduction(base, ressourceName)
-  );
+  req.production = {
+    data: requireExistingProduction(
+      productionService.getProduction(base, ressourceName)
+    ),
+    name: ressourceName,
+  };
   next();
 }
 
