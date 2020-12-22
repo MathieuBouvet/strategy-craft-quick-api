@@ -9,7 +9,7 @@ function genericGrowthFunction(n, z) {
 const baseGrowthFunction = genericGrowthFunction(3.3, 51.7);
 const defaultGrowt = baseGrowthFunction(0);
 const laggingGrowt = baseGrowthFunction(-5);
-const zero = x => 0;
+const zero = () => 0;
 
 const halfOf = coefficient(1 / 2);
 const thirdOf = coefficient(1 / 3);
