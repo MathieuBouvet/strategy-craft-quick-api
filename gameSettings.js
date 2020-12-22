@@ -11,9 +11,9 @@ const defaultGrowt = baseGrowthFunction(0);
 const laggingGrowt = baseGrowthFunction(-5);
 const zero = () => 0;
 
-const halfOf = coefficient(1 / 2);
-const thirdOf = coefficient(1 / 3);
-const quarterOf = coefficient(1 / 4);
+const oneHalfOf = coefficient(1 / 2);
+const oneThirdOf = coefficient(1 / 3);
+const oneQuarterOf = coefficient(1 / 4);
 
 const startingRessources = {
   wood: 300,
@@ -28,7 +28,7 @@ const productionSettings = {
     upgradeWorkerCost: 5,
     upgradeCosts: {
       wood: {
-        value: halfOf(startingRessources.wood),
+        value: oneHalfOf(startingRessources.wood),
         growth: defaultGrowt,
       },
       food: {
@@ -36,7 +36,7 @@ const productionSettings = {
         growth: zero,
       },
       ore: {
-        value: halfOf(startingRessources.ore),
+        value: oneHalfOf(startingRessources.ore),
         growth: laggingGrowt,
       },
     },
@@ -47,15 +47,15 @@ const productionSettings = {
     upgradeWorkerCost: 5,
     upgradeCosts: {
       wood: {
-        value: quarterOf(startingRessources.wood),
+        value: oneQuarterOf(startingRessources.wood),
         growth: defaultGrowt,
       },
       food: {
-        value: thirdOf(startingRessources.food),
+        value: oneThirdOf(startingRessources.food),
         growth: defaultGrowt,
       },
       ore: {
-        value: quarterOf(startingRessources.ore),
+        value: oneQuarterOf(startingRessources.ore),
         growth: laggingGrowt,
       },
     },
@@ -66,7 +66,7 @@ const productionSettings = {
     upgradeWorkerCost: 5,
     upgradeCosts: {
       wood: {
-        value: quarterOf(startingRessources.wood),
+        value: oneQuarterOf(startingRessources.wood),
         growth: defaultGrowt,
       },
       food: {
@@ -74,7 +74,7 @@ const productionSettings = {
         growth: zero,
       },
       ore: {
-        value: quarterOf(startingRessources.ore),
+        value: oneQuarterOf(startingRessources.ore),
         growth: laggingGrowt,
       },
     },
