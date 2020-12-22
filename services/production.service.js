@@ -25,11 +25,10 @@ function getNextLevelCost(production) {
   const currentLevel = production.data.value().level;
 
   const upgradeBaseCost = productionSettings[ressourceName].upgradeCosts;
-  const upgradeGrowtFunction = productionSettings[ressourceName].upgradeGrowth;
 
   const workerCost = productionSettings[ressourceName].upgradeWorkerCost;
-  const ressourceCostFn = (cost, ressource) =>
-    Math.floor(cost * upgradeGrowtFunction[ressource](currentLevel));
+  const ressourceCostFn = cost =>
+    Math.floor(cost.value * cost.growth(currentLevel));
   return {
     ...objectMap(upgradeBaseCost, ressourceCostFn),
     workers: workerCost,
