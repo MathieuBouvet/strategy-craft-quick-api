@@ -23,9 +23,13 @@ function validateRessourceName(ressourceName) {
 function getNextLevelCost(production) {
   const ressourceName = production.name;
   const currentLevel = production.data.value().level;
+
   const upgradeBaseCost = productionSettings[ressourceName].upgradeCosts;
+  const upgradeGrowtFunction = productionSettings[ressourceName].upgradeGrowth;
+
   const workerCost = productionSettings[ressourceName].upgradeWorkerCost;
-  const ressourceCostFn = cost => currentLevel * cost;
+  const ressourceCostFn = (cost, ressource) =>
+    Math.floor(cost * upgradeGrowtFunction[ressource](currentLevel));
   return {
     ...objectMap(upgradeBaseCost, ressourceCostFn),
     workers: workerCost,
