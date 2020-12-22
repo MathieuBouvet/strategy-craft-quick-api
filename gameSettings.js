@@ -14,6 +14,7 @@ const zero = () => 0;
 const oneHalfOf = coefficient(1 / 2);
 const oneThirdOf = coefficient(1 / 3);
 const oneQuarterOf = coefficient(1 / 4);
+const oneHundredthOf = coefficient(1 / 100);
 
 const startingRessources = {
   wood: 300,
@@ -23,7 +24,7 @@ const startingRessources = {
 };
 const productionSettings = {
   wood: {
-    hourlyProduction: 10,
+    hourlyProduction: oneHundredthOf(startingRessources.wood),
     upgradeTime: 100,
     upgradeWorkerCost: 5,
     upgradeCosts: {
@@ -42,7 +43,7 @@ const productionSettings = {
     },
   },
   food: {
-    hourlyProduction: 10,
+    hourlyProduction: oneHundredthOf(startingRessources.food),
     upgradeTime: 100,
     upgradeWorkerCost: 5,
     upgradeCosts: {
@@ -61,7 +62,7 @@ const productionSettings = {
     },
   },
   ore: {
-    hourlyProduction: 10,
+    hourlyProduction: oneHundredthOf(startingRessources.ore),
     upgradeTime: 100,
     upgradeWorkerCost: 5,
     upgradeCosts: {
