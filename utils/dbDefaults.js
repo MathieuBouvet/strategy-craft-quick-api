@@ -1,3 +1,5 @@
+const { startingRessources } = require("../gameSettings");
+
 function createProduction() {
   return {
     workers: 0,
@@ -12,9 +14,9 @@ function createBase(id, owner) {
     id,
     owner: owner.id,
     idleWorkers: 10,
-    wood: 0,
-    food: 0,
-    ore: 0,
+    wood: startingRessources.wood,
+    food: startingRessources.food,
+    ore: startingRessources.ore,
     productions: {
       wood: createProduction(),
       food: createProduction(),
