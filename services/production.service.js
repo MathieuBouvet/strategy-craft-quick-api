@@ -20,19 +20,21 @@ function validateRessourceName(ressourceName) {
   return ressourceName;
 }
 
-function getNextLevelCost(production) {
+function getNextLevelRessourceCost(production) {
   const ressourceName = production.name;
   const currentLevel = production.data.value().level;
 
   const upgradeBaseCost = productionSettings[ressourceName].upgradeCosts;
 
-  const workerCost = productionSettings[ressourceName].upgradeWorkerCost;
   const ressourceCostFn = cost =>
     Math.floor(cost.value * cost.growth(currentLevel));
-  return {
-    ...objectMap(upgradeBaseCost, ressourceCostFn),
-    workers: workerCost,
-  };
+
+  return objectMap(upgradeBaseCost, ressourceCostFn);
+}
+
+function getNextLevelWorkerCost(production) {
+  const ressourceName = production.name;
+  return productionSettings[ressourceName].upgradeWorkerCost;
 }
 
 function getUpgradeTime(production) {
@@ -50,7 +52,8 @@ module.exports = {
   getProduction,
   getProductionByBaseId,
   validateRessourceName,
-  getNextLevelCost,
+  getNextLevelRessourceCost,
   getUpgradeReadyTime,
   getUpgradeTime,
+  getNextLevelWorkerCost,
 };
