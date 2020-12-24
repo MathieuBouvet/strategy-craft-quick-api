@@ -54,6 +54,19 @@ function isThereEnoughWorkersToUpgrade(base, production, workerCost) {
   return baseData.idleWorkers + productionData.workers >= workerCost;
 }
 
+function getRepresentation(production) {
+  const nextLevelCost = {
+    ...getNextLevelRessourceCost(production),
+    workers: getNextLevelWorkerCost(production),
+  };
+  return {
+    name: production.name,
+    nextLevelCost,
+    upgradeTime: getUpgradeTime(production),
+    ...production.data.value(),
+  };
+}
+
 module.exports = {
   getProduction,
   getProductionByBaseId,
@@ -63,4 +76,5 @@ module.exports = {
   getUpgradeTime,
   getNextLevelWorkerCost,
   isThereEnoughWorkersToUpgrade,
+  getRepresentation,
 };
