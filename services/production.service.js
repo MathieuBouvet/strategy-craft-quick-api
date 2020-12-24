@@ -67,6 +67,15 @@ function getRepresentation(production) {
   };
 }
 
+function setPendingUpgrade(production, upgradeCosts) {
+  const { workers, ...ressources } = upgradeCosts;
+  production.data
+    .set("pendingUpgrade.paidRessources", ressources)
+    .set("pendingUpgrade.workers", workers)
+    .set("pendingUpgrade.readyAt", getUpgradeReadyTime(production))
+    .write();
+}
+
 module.exports = {
   getProduction,
   getProductionByBaseId,
@@ -77,4 +86,5 @@ module.exports = {
   getNextLevelWorkerCost,
   isThereEnoughWorkersToUpgrade,
   getRepresentation,
+  setPendingUpgrade,
 };
