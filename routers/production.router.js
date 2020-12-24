@@ -7,7 +7,8 @@ const namedRessourceRouter = express.Router({ mergeParams: true });
 
 namedRessourceRouter
   .use(validateProduction)
-  .get("/", productionController.getProduction);
+  .get("/", productionController.getProduction)
+  .put("/upgrade", productionController.upgrade);
 
 router.use("/:ressourceName", namedRessourceRouter);
 
