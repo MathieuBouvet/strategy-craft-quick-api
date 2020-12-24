@@ -48,6 +48,12 @@ function getUpgradeReadyTime(production) {
   return Date.now() + getUpgradeTime(production);
 }
 
+function isThereEnoughWorkersToUpgrade(base, production, workerCost) {
+  const baseData = base.value();
+  const productionData = production.data.value();
+  return baseData.idleWorkers + productionData.workers >= workerCost;
+}
+
 module.exports = {
   getProduction,
   getProductionByBaseId,
@@ -56,4 +62,5 @@ module.exports = {
   getUpgradeReadyTime,
   getUpgradeTime,
   getNextLevelWorkerCost,
+  isThereEnoughWorkersToUpgrade,
 };
