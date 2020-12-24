@@ -2,7 +2,7 @@ function createProduction() {
   return {
     workers: 0,
     level: 1,
-    upgrading: false,
+    pendingUpgrade: null,
   };
 }
 
