@@ -15,4 +15,22 @@ function isThereEnoughRessources(base, ressourcesCosts) {
   return objectMap(ressourcesCosts, checkCost);
 }
 
-module.exports = { getBaseById, isThereEnoughRessources };
+function addToStock(base, amounts) {
+  for (let [ressource, amount] of Object.entries(amounts)) {
+    base.set(ressource, base.get(ressource) + amount).write();
+  }
+}
+
+function removeFromStock(base, amounts) {
+  addToStock(
+    base,
+    objectMap(amounts, amount => -amount)
+  );
+}
+
+module.exports = {
+  getBaseById,
+  isThereEnoughRessources,
+  addToStock,
+  removeFromStock,
+};
