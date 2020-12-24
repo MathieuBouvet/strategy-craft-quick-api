@@ -22,6 +22,7 @@ app.use((err, req, res, next) => {
     res.status(err.code);
     res.json({ ...err, message: err.message });
   } else {
+    console.log(err);
     res.status(500);
     res.send("Internal Server Error : " + err);
   }
