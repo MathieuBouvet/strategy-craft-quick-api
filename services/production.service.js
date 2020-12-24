@@ -76,6 +76,11 @@ function setPendingUpgrade(production, upgradeCosts) {
     .write();
 }
 
+function getWorkersToRemoveFromIdlePool(production, workerCost) {
+  const productionData = production.data.value();
+  return workerCost - productionData.workers;
+}
+
 module.exports = {
   getProduction,
   getProductionByBaseId,
@@ -87,4 +92,5 @@ module.exports = {
   isThereEnoughWorkersToUpgrade,
   getRepresentation,
   setPendingUpgrade,
+  getWorkersToRemoveFromIdlePool,
 };
