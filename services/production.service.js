@@ -35,9 +35,22 @@ function getNextLevelCost(production) {
   };
 }
 
+function getUpgradeTime(production) {
+  return (
+    productionSettings[production.name].upgradeTime *
+    production.data.value().level
+  );
+}
+
+function getUpgradeReadyTime(production) {
+  return Date.now() + getUpgradeTime(production);
+}
+
 module.exports = {
   getProduction,
   getProductionByBaseId,
   validateRessourceName,
   getNextLevelCost,
+  getUpgradeReadyTime,
+  getUpgradeTime,
 };
